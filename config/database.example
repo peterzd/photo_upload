@@ -1,0 +1,18 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: peterzd
+  password:
+
+development:
+  <<: *common
+  database: upload_share_development
+
+test:
+  <<: *common
+  database: upload_share_test
+
+production:
+  <<: *common
+  database: upload_share_production
