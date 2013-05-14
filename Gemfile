@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'pg', '0.15.1'
 gem 'haml-rails', '~> 0.4'
 gem 'thin', '1.5.1'
+gem 'paperclip', '~> 3.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

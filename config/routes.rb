@@ -3,6 +3,7 @@ UploadShare::Application.routes.draw do
     collection do
       get :upload
       get :download
+      post :upload
     end
   end
 

@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514025331) do
+ActiveRecord::Schema.define(:version => 20130514032815) do
 
   create_table "share_items", :force => true do |t|
     t.decimal  "extract_code"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "file_address"
   end
 
 end
