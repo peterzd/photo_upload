@@ -80,4 +80,14 @@ class ShareItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # upload a file
+  def upload
+    uploaded_io = params[:uploaded_file]
+    logger.info("the original filename is : #{uploaded_io}")
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'w') do |file|
+      str = uploaded_io.read
+      file.write(str.force_encoding('UTF-8'))
+    end
+  end
 end
