@@ -1,4 +1,14 @@
 UploadShare::Application.routes.draw do
+  resources :share_items do
+    collection do
+      get :upload
+      get :download
+    end
+  end
+
+  root :to => 'share_items#index'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +58,6 @@ UploadShare::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

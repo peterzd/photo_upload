@@ -1,0 +1,13 @@
+= form_for @share_item do |f|
+  - if @share_item.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@share_item.errors.count, "error")} prohibited this share_item from being saved:"
+      %ul
+        - @share_item.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :extract_code
+    = f.text_field :extract_code
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Extract code:
+  = @share_item.extract_code
+
+= link_to 'Edit', edit_share_item_path(@share_item)
+\|
+= link_to 'Back', share_items_path

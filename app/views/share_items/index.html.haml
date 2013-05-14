@@ -1,0 +1,23 @@
+%h1 Listing share_items
+
+%table
+  %tr
+    %th Extract code
+    %th
+    %th
+    %th
+
+  - @share_items.each do |share_item|
+    %tr
+      %td= share_item.extract_code
+      %td= link_to 'Show', share_item
+      %td= link_to 'Edit', edit_share_item_path(share_item)
+      %td= link_to 'Destroy', share_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+-# = link_to 'New Share item', new_share_item_path
+%br
+= link_to 'Upload file', upload_share_items_path
+\|
+= link_to 'Download file', download_share_items_path
