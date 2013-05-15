@@ -1,17 +1,10 @@
 class ShareItemsController < ApplicationController
-  # GET /share_items
-  # GET /share_items.json
   def index
+    @share_item = ShareItem.new
     @share_items = ShareItem.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @share_items }
-    end
   end
 
-  # GET /share_items/1
-  # GET /share_items/1.json
   def show
     @share_item = ShareItem.find(params[:id])
 
@@ -21,8 +14,6 @@ class ShareItemsController < ApplicationController
     end
   end
 
-  # GET /share_items/new
-  # GET /share_items/new.json
   def new
     @share_item = ShareItem.new
 
@@ -37,8 +28,6 @@ class ShareItemsController < ApplicationController
     @share_item = ShareItem.find(params[:id])
   end
 
-  # POST /share_items
-  # POST /share_items.json
   def create
     @share_item = ShareItem.new(params[:share_item])
 
@@ -53,8 +42,6 @@ class ShareItemsController < ApplicationController
     end
   end
 
-  # PUT /share_items/1
-  # PUT /share_items/1.json
   def update
     @share_item = ShareItem.find(params[:id])
 
@@ -69,8 +56,6 @@ class ShareItemsController < ApplicationController
     end
   end
 
-  # DELETE /share_items/1
-  # DELETE /share_items/1.json
   def destroy
     @share_item = ShareItem.find(params[:id])
     @share_item.destroy
@@ -83,11 +68,15 @@ class ShareItemsController < ApplicationController
 
   # upload a file
   def upload
-    uploaded_io = params[:uploaded_file]
-    logger.info("the original filename is : #{uploaded_io}")
+    uploaded_io = params[:share_item][:file]
+    uploaded_code = params[:share_item][:extract_code]
+    file_name = uploaded_io.original_filename
+    si = ShareItem.create file_name: file_name, extract_code: uploaded_code
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'w') do |file|
       str = uploaded_io.read
       file.write(str.force_encoding('UTF-8'))
     end
+    flash[:notice] = 'add successful'
+    redirect_to root_path
   end
 end
